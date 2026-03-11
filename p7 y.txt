@@ -1,0 +1,43 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sb
+
+FilePath = "csvdata.csv"
+Data = pd.read_csv(FilePath)
+
+print("First 5 rows of the data are as follows :")
+print(Data.head())
+
+# summary
+print("\nSummary Statistics :")
+print(Data.describe())
+
+# checking for the missing values
+print("\nMissing values in each column : ")
+print(Data.isnull().sum())
+
+# columns data types
+print("Data Types of the Columns")
+print(Data.dtypes)
+
+if 'Sales' in Data.columns:
+    MaxSale = Data['Sales'].max()
+    MinSale = Data['Sales'].min()
+    AvgSale = Data['Sales'].mean()
+
+    print(f"Max Sales Values : {MaxSale}")
+    print(f"Min Sales Values : {MinSale}")
+    print(f"Avg Sales Values : {AvgSale}")
+
+if 'Product' in Data.columns:
+    ProductName = Data['Product'].mode()[0]
+    print(f"Most Frequent Product is {ProductName}")
+
+# plotting the histogram of numeric columns like sales
+if 'Sales' in Data.columns:
+    plt.figure(figsize=(8,6))
+    sb.histplot(Data['Sales'], kde=True)
+    plt.title("Sales Distribution")
+    plt.xlabel("Sales")
+    plt.ylabel("Frequency")
+    plt.show()
