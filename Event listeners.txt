@@ -1,0 +1,60 @@
+Activity.xml add bgcolor id in main layout code
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/bgcolor"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+package com.example.event
+
+import android.graphics.Color
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.KeyEvent
+import android.view.MotionEvent
+import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintSet
+import kotlinx.android.synthetic.main.activity_main.*
+import java.security.KeyStore
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        button.setOnClickListener {
+            Toast.makeText(this, "set on click", Toast.LENGTH_LONG).show()
+            textView.text = "set on click"
+        }
+
+        button.setOnLongClickListener {
+            Toast.makeText(this, "setOnLongListener", Toast.LENGTH_LONG).show()
+            bgcolor.setBackgroundColor(Color.RED)
+
+            true
+        }
+
+        imageView2.setOnClickListener {
+            Toast.makeText(this, "Double tap", Toast.LENGTH_LONG).show()
+        }
+        imageView2.setOnTouchListener { view, motionEvent ->
+            when (motionEvent.action) {
+                MotionEvent.ACTION_DOWN -> textView.text = "ACTION DOWN"
+                MotionEvent.ACTION_UP -> textView.text = "ACTION UP"
+                MotionEvent.ACTION_POINTER_DOWN -> textView.text = "multitouch"
+            }
+            true
+        }
+
+
+        Udata.setOnKeyListener { view, i, keyEvent ->
+            if (keyEvent.keyCode == KeyEvent.KEYCODE_ENTER) {
+                bgcolor.setBackgroundColor(Color.BLUE)
+                textView.text = "Enter Button Click"
+            }
+            true
+        }
+    }
+}

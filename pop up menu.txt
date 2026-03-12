@@ -1,0 +1,69 @@
+package srm.it.menu
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.PopupMenu
+import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.*
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        button.setOnClickListener {
+            var pm:PopupMenu= PopupMenu(this,button)
+            pm.menuInflater.inflate(R.menu.resource_file,pm.menu)
+            pm.setOnMenuItemClickListener { it
+                if (it.itemId==R.id.one)
+                {
+                    Toast.makeText(this,"this is profile",Toast.LENGTH_LONG).show()
+                }
+                if (it.itemId==R.id.two)
+                {
+                    System.exit(0)
+                }
+                if (it.itemId==R.id.three)
+                {
+                    Toast.makeText(this,"this is home",Toast.LENGTH_LONG).show()
+                }
+                if (it.itemId==R.id.four)
+                {
+                    Toast.makeText(this,"this is About us",Toast.LENGTH_LONG).show()
+                }
+                if (it.itemId==R.id.five)
+                {
+                    Toast.makeText(this,"this is contact us",Toast.LENGTH_LONG).show()
+                }
+                true
+            }
+            pm.show()
+        }
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.resource_file,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId==R.id.one)
+        {
+            Toast.makeText(this,"this is profile",Toast.LENGTH_LONG).show()
+        }
+        if (item.itemId==R.id.two)
+        {
+            System.exit(0)
+        }
+        if (item.itemId==R.id.three)
+        {
+            Toast.makeText(this,"this is home",Toast.LENGTH_LONG).show()
+        }
+        if (item.itemId==R.id.four)
+        {
+            Toast.makeText(this,"this is About us",Toast.LENGTH_LONG).show()
+        }
+        if (item.itemId==R.id.five)
+        {
+            Toast.makeText(this,"this is contact us",Toast.LENGTH_LONG).show()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+}

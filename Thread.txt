@@ -1,0 +1,36 @@
+Step 1:add 2 button(start , stop) & add one textView
+Step 2:
+package com.example.thread
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import kotlinx.android.synthetic.main.activity_main.*
+
+class MainActivity : AppCompatActivity() {
+    var flag = false
+    var sec = 0
+    var handler =Handler(Looper.getMainLooper())
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        button.setOnClickListener {
+            if (!flag){
+                flag= true
+                handler.post(object : Runnable {
+                    override fun run() {
+                        sec++
+                        textView.text=sec.toString()
+                        handler.postDelayed(this,1000)
+                    }
+                })
+            }
+        }
+        button2.setOnClickListener {
+            flag= false
+            handler.removeCallbacksAndMessages(null)
+        }
+    }
+}

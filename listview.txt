@@ -1,0 +1,25 @@
+mainActivity:
+
+package srm.it.list_radio
+import android.graphics.Color
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.RadioButton
+import kotlinx.android.synthetic.main.activity_main.*
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        var data= arrayOf("YELLOW","GRAY","RED")
+        var ada=ArrayAdapter(this,android.R.layout.simple_list_item_1,data)
+        listview.adapter=ada
+
+        listview.setOnItemClickListener { adapterView, view, i, l ->
+            var d=adapterView.getItemAtPosition(i).toString()
+            my_layout.setBackgroundColor(Color.parseColor(d))
+        }
+    }
+}

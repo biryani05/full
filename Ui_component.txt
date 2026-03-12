@@ -1,0 +1,45 @@
+package sy.it.ui_component
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.RadioButton
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import kotlinx.android.synthetic.main.activity_main.*
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        button.setOnClickListener {
+            var name=box1.text.toString()
+            var email= box2.text.toString()
+            var dob=box3.text.toString()
+            var pass=box4.text.toString()
+            var compass=box5.text.toString()
+
+            if(pass!=compass){
+                Toast.makeText(this,"Password does not match",Toast.LENGTH_SHORT).show()
+ }
+
+            var gen=radioGroup.checkedRadioButtonId
+            var gs=if (gen == -1) {
+                Toast.makeText(this, "Select gender", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                findViewById<RadioButton>(gen).text.toString()
+            }
+
+            var term=if(checkBox.isChecked){
+                checkBox.text.toString()
+            }else{
+                Toast.makeText(this, "Please accept our terms and conditions", Toast.LENGTH_SHORT).show()
+            }
+            textView7.text = """
+                $name
+                $email
+                $dob
+                $pass
+                $gs
+                $term
+                """.trimIndent() }}}
